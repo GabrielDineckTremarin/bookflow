@@ -1,0 +1,6 @@
+@bookflow.Server_HostAddress = http://localhost:5042
+
+GET {{bookflow.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
