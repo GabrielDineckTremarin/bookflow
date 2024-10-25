@@ -39,9 +39,13 @@
   - **Reservation (Reserva)**: Controle das reservas de livros, permitindo que usuários reservem quando todos os exemplares estiverem indisponíveis.
   - **Fine (Multa)**: Penalidade aplicada por atraso na devolução de um empréstimo, relacionada a um usuário e a um empréstimo específico.
   - **User (Usuário)**: Representa os usuários do sistema, com diferentes papéis (Admin e Member).
-
+ 
 ### Regras de Negócio:
 
 - **Reserva de Livro**: Um usuário só pode reservar um livro quando todos os exemplares estiverem emprestados.
 - **Multa por Atraso**: Caso a data de devolução de um empréstimo seja ultrapassada e o status seja atualizado para "atrasado", uma multa será gerada automaticamente para o usuário.
 - **Gerenciamento de Empréstimos**: O sistema controla os empréstimos de exemplares, permitindo ao usuário visualizar seus empréstimos atuais e passados.
+
+### Projeto Acadêmico
+
+Este projeto está sendo como parte da disciplina de **Sistemas da Informação** no curso de **Ciência da Computação** na **Universidade Federal do Pampa**. O objetivo é aplicar os conceitos aprendidos em sala de aula em um projeto prático.
