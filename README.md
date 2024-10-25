@@ -39,6 +39,12 @@
   - **Reservation (Reserva)**: Controle das reservas de livros, permitindo que usuários reservem quando todos os exemplares estiverem indisponíveis.
   - **Fine (Multa)**: Penalidade aplicada por atraso na devolução de um empréstimo, relacionada a um usuário e a um empréstimo específico.
   - **User (Usuário)**: Representa os usuários do sistema, com diferentes papéis (Admin e Member).
+ 
+### Projeto Acadêmico
+
+Este projeto está sendo como parte da disciplina de **Sistemas da Informação** no curso de **Ciência da Computação** na **Universidade Federal do Pampa**. O objetivo é aplicar os conceitos aprendidos em sala de aula em um projeto prático.
+
+
 
 ### Regras de Negócio:
 
