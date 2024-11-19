@@ -1,0 +1,76 @@
+# Compiled files (C#)
+bin/
+obj/
+
+# User-specific files (C#)
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results (C#)
+[Bb]uild/
+[Ll]ogs/
+
+# Visual Studio temp files, build results
+.vs/
+
+# Rider files
+.idea/
+
+# Node modules (Front-end)
+node_modules/
+
+# Npm debug log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+*.log
+*.tlog
+*.cache
+
+# Environment variables
+.env
+.env.*
+
+# Coverage directories (front-end testing)
+coverage/
+
+# Parcel cache (for bundlers like Webpack/Parcel)
+.cache/
+dist/
+
+# Generated files
+*.min.js
+*.map
+
+# Backup & snapshot files
+*_i.c
+*_p.c
+*_i.cpp
+*_p.cpp
+*_i.h
+*_p.h
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+*.dotSettings
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config files
+*.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
