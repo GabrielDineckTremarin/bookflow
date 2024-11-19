@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?><bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="definitions_2" targetNamespace="http://www.bpmn-sketch-miner.ai" exporter="BPMN Sketch Miner" exporterVersion="1.17.6.3337">
+ <bpmn:collaboration id="collaboration_3">
+ <bpmn:participant id="participant_7" name="" processRef="process_6"/>
+</bpmn:collaboration>
+
+ <bpmn:process id="process_6" isExecutable="false">
+ <bpmn:laneSet id="laneSet_8">
+ <bpmn:lane id="lane_9" name="Pool">
+ <bpmn:flowNodeRef>startEvent_10</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_11</bpmn:flowNodeRef>
+
+</bpmn:lane>
+
+ <bpmn:lane id="lane_13" name="Lane">
+ <bpmn:flowNodeRef>endEvent_14</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_15</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_16</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_17</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_18</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_19</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_20</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_21</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_22</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_23</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_24</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>task_25</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>dataObjectReference_27</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>dataObjectReference_29</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>dataObjectReference_31</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>dataObjectReference_33</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>dataObjectReference_35</bpmn:flowNodeRef>
+
+ <bpmn:flowNodeRef>dataObjectReference_37</bpmn:flowNodeRef>
+
+</bpmn:lane>
+
+</bpmn:laneSet>
+
+ <bpmn:startEvent id="startEvent_10">
+ <bpmn:outgoing>sequenceFlow_12</bpmn:outgoing>
+
+</bpmn:startEvent>
+
+ <bpmn:task id="task_11" name="Sistema de
+Biblioteca">
+ <bpmn:incoming>sequenceFlow_12</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_38</bpmn:outgoing>
+
+</bpmn:task>
+
+ <bpmn:sequenceFlow id="sequenceFlow_12" sourceRef="startEvent_10" targetRef="task_11"/>
+ <bpmn:endEvent id="endEvent_14">
+ <bpmn:incoming>sequenceFlow_49</bpmn:incoming>
+
+</bpmn:endEvent>
+
+ <bpmn:task id="task_15" name="Bibliotecário">
+ <bpmn:incoming>sequenceFlow_38</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_39</bpmn:outgoing>
+
+</bpmn:task>
+
+ <bpmn:task id="task_16" name="Inicio">
+ <bpmn:incoming>sequenceFlow_39</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_40</bpmn:outgoing>
+
+</bpmn:task>
+
+ <bpmn:task id="task_17" name="-> Verificar se
+usuário está
+cadastrado">
+ <bpmn:incoming>sequenceFlow_40</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_41</bpmn:outgoing>
+
+ <bpmn:dataOutputAssociation id="dataOutputAssociation_51">
+ <bpmn:targetRef>dataObjectReference_27</bpmn:targetRef>
+
+</bpmn:dataOutputAssociation>
+
+ <bpmn:dataOutputAssociation id="dataOutputAssociation_53">
+ <bpmn:targetRef>dataObjectReference_29</bpmn:targetRef>
+
+</bpmn:dataOutputAssociation>
+
+ <bpmn:dataOutputAssociation id="dataOutputAssociation_55">
+ <bpmn:targetRef>dataObjectReference_31</bpmn:targetRef>
+
+</bpmn:dataOutputAssociation>
+
+</bpmn:task>
+
+ <bpmn:task id="task_18" name="Usuário">
+ <bpmn:incoming>sequenceFlow_41</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_42</bpmn:outgoing>
+
+ <bpmn:dataInputAssociation id="dataInputAssociation_50">
+ <bpmn:sourceRef>dataObjectReference_27</bpmn:sourceRef>
+
+</bpmn:dataInputAssociation>
+
+ <bpmn:dataInputAssociation id="dataInputAssociation_52">
+ <bpmn:sourceRef>dataObjectReference_29</bpmn:sourceRef>
+
+</bpmn:dataInputAssociation>
+
+ <bpmn:dataInputAssociation id="dataInputAssociation_54">
+ <bpmn:sourceRef>dataObjectReference_31</bpmn:sourceRef>
+
+</bpmn:dataInputAssociation>
+
+</bpmn:task>
+
+ <bpmn:task id="task_19" name="-> Solicitar
+empréstimo de livro">
+ <bpmn:incoming>sequenceFlow_42</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_43</bpmn:outgoing>
+
+</bpmn:task>
+
+ <bpmn:task id="task_20" name="-> Devolver livro">
+ <bpmn:incoming>sequenceFlow_43</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_44</bpmn:outgoing>
+
+</bpmn:task>
+
+ <bpmn:task id="task_21" name="Sistema">
+ <bpmn:incoming>sequenceFlow_44</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_45</bpmn:outgoing>
+
+</bpmn:task>
+
+ <bpmn:task id="task_22" name="-> Verificar
+disponibilidade do
+livro">
+ <bpmn:incoming>sequenceFlow_45</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_46</bpmn:outgoing>
+
+ <bpmn:dataOutputAssociation id="dataOutputAssociation_57">
+ <bpmn:targetRef>dataObjectReference_33</bpmn:targetRef>
+
+</bpmn:dataOutputAssociation>
+
+ <bpmn:dataOutputAssociation id="dataOutputAssociation_59">
+ <bpmn:targetRef>dataObjectReference_35</bpmn:targetRef>
+
+</bpmn:dataOutputAssociation>
+
+ <bpmn:dataOutputAssociation id="dataOutputAssociation_61">
+ <bpmn:targetRef>dataObjectReference_37</bpmn:targetRef>
+
+</bpmn:dataOutputAssociation>
+
+</bpmn:task>
+
+ <bpmn:task id="task_23" name="-> Notificar usuário
+(quando reserva
+disponível)">
+ <bpmn:incoming>sequenceFlow_46</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_47</bpmn:outgoing>
+
+ <bpmn:dataInputAssociation id="dataInputAssociation_56">
+ <bpmn:sourceRef>dataObjectReference_33</bpmn:sourceRef>
+
+</bpmn:dataInputAssociation>
+
+ <bpmn:dataInputAssociation id="dataInputAssociation_58">
+ <bpmn:sourceRef>dataObjectReference_35</bpmn:sourceRef>
+
+</bpmn:dataInputAssociation>
+
+ <bpmn:dataInputAssociation id="dataInputAssociation_60">
+ <bpmn:sourceRef>dataObjectReference_37</bpmn:sourceRef>
+
+</bpmn:dataInputAssociation>
+
+</bpmn:task>
+
+ <bpmn:task id="task_24" name="-> Calcular multas
+(após devolução)">
+ <bpmn:incoming>sequenceFlow_47</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_48</bpmn:outgoing>
+
+</bpmn:task>
+
+ <bpmn:task id="task_25" name="Fim">
+ <bpmn:incoming>sequenceFlow_48</bpmn:incoming>
+
+ <bpmn:outgoing>sequenceFlow_49</bpmn:outgoing>
+
+</bpmn:task>
+
+ <bpmn:dataObject id="dataObject_26"/>
+ <bpmn:dataObjectReference id="dataObjectReference_27" dataObjectRef="dataObject_26" name="->
+[Decisão] Usuário
+cadastrado?"/>
+ <bpmn:dataObject id="dataObject_28"/>
+ <bpmn:dataObjectReference id="dataObjectReference_29" dataObjectRef="dataObject_28" name="->
+[Decisão] Usuário
+cadastrado??    ->
+[Sim] -> Empréstimo
+ou reserva"/>
+ <bpmn:dataObject id="dataObject_30"/>
+ <bpmn:dataObjectReference id="dataObjectReference_31" dataObjectRef="dataObject_30" name="->
+[Não] -> Cadastrar
+novo usuário"/>
+ <bpmn:dataObject id="dataObject_32"/>
+ <bpmn:dataObjectReference id="dataObjectReference_33" dataObjectRef="dataObject_32" name="->
+[Decisão] Livro
+disponível?"/>
+ <bpmn:dataObject id="dataObject_34"/>
+ <bpmn:dataObjectReference id="dataObjectReference_35" dataObjectRef="dataObject_34" name="->
+[Decisão] Livro
+disponível??    ->
+[Sim] -> Registrar
+empréstimo"/>
+ <bpmn:dataObject id="dataObject_36"/>
+ <bpmn:dataObjectReference id="dataObjectReference_37" dataObjectRef="dataObject_36" name="->
+[Não] -> Registrar
+reserva"/>
+ <bpmn:sequenceFlow id="sequenceFlow_38" sourceRef="task_11" targetRef="task_15"/>
+ <bpmn:sequenceFlow id="sequenceFlow_39" sourceRef="task_15" targetRef="task_16"/>
+ <bpmn:sequenceFlow id="sequenceFlow_40" sourceRef="task_16" targetRef="task_17"/>
+ <bpmn:sequenceFlow id="sequenceFlow_41" sourceRef="task_17" targetRef="task_18"/>
+ <bpmn:sequenceFlow id="sequenceFlow_42" sourceRef="task_18" targetRef="task_19"/>
+ <bpmn:sequenceFlow id="sequenceFlow_43" sourceRef="task_19" targetRef="task_20"/>
+ <bpmn:sequenceFlow id="sequenceFlow_44" sourceRef="task_20" targetRef="task_21"/>
+ <bpmn:sequenceFlow id="sequenceFlow_45" sourceRef="task_21" targetRef="task_22"/>
+ <bpmn:sequenceFlow id="sequenceFlow_46" sourceRef="task_22" targetRef="task_23"/>
+ <bpmn:sequenceFlow id="sequenceFlow_47" sourceRef="task_23" targetRef="task_24"/>
+ <bpmn:sequenceFlow id="sequenceFlow_48" sourceRef="task_24" targetRef="task_25"/>
+ <bpmn:sequenceFlow id="sequenceFlow_49" sourceRef="task_25" targetRef="endEvent_14"/>
+</bpmn:process>
+
+ <bpmndi:BPMNDiagram id="BPMNDiagram_4">
+ <bpmndi:BPMNPlane id="BPMNPlane_5" bpmnElement="collaboration_3">
+ <bpmndi:BPMNShape id="participant_7_di" bpmnElement="participant_7" isHorizontal="false">
+ <dc:Bounds x="0" y="40" width="993" height="1306"/>
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="lane_9_di" bpmnElement="lane_9" isHorizontal="false">
+ <dc:Bounds x="0" y="40" width="179" height="1306"/>
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="startEvent_10_di" bpmnElement="startEvent_10" isHorizontal="false">
+ <dc:Bounds x="75" y="75" width="20" height="20"/>
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_11_di" bpmnElement="task_11" isHorizontal="false">
+ <dc:Bounds x="35" y="120" width="99" height="55"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="60" y="120" width="20" height="20"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_12_di" bpmnElement="sequenceFlow_12">
+ <di:waypoint x="85" y="95"/>
+ <di:waypoint x="85" y="120"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNShape id="lane_13_di" bpmnElement="lane_13" isHorizontal="false">
+ <dc:Bounds x="179" y="40" width="814" height="1306"/>
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="endEvent_14_di" bpmnElement="endEvent_14" isHorizontal="false">
+ <dc:Bounds x="666" y="1291" width="20" height="20"/>
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_15_di" bpmnElement="task_15" isHorizontal="false">
+ <dc:Bounds x="614" y="200" width="111" height="39"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="639" y="200" width="111" height="39"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_16_di" bpmnElement="task_16" isHorizontal="false">
+ <dc:Bounds x="640" y="264" width="59" height="39"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="665" y="264" width="59" height="39"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_17_di" bpmnElement="task_17" isHorizontal="false">
+ <dc:Bounds x="611" y="329" width="117" height="71"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="636" y="329" width="20" height="20"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_18_di" bpmnElement="task_18" isHorizontal="false">
+ <dc:Bounds x="592" y="553" width="75" height="39"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="617" y="553" width="75" height="39"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_19_di" bpmnElement="task_19" isHorizontal="false">
+ <dc:Bounds x="547" y="617" width="164" height="55"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="572" y="617" width="20" height="20"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_20_di" bpmnElement="task_20" isHorizontal="false">
+ <dc:Bounds x="561" y="697" width="135" height="39"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="586" y="697" width="135" height="39"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_21_di" bpmnElement="task_21" isHorizontal="false">
+ <dc:Bounds x="591" y="762" width="77" height="39"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="616" y="762" width="77" height="39"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_22_di" bpmnElement="task_22" isHorizontal="false">
+ <dc:Bounds x="552" y="826" width="154" height="71"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="577" y="826" width="20" height="20"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_23_di" bpmnElement="task_23" isHorizontal="false">
+ <dc:Bounds x="597" y="1050" width="158" height="71"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="622" y="1050" width="20" height="20"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_24_di" bpmnElement="task_24" isHorizontal="false">
+ <dc:Bounds x="602" y="1146" width="149" height="55"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="627" y="1146" width="20" height="20"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="task_25_di" bpmnElement="task_25" isHorizontal="false">
+ <dc:Bounds x="651" y="1227" width="50" height="39"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="676" y="1227" width="46" height="39"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="dataObjectReference_27_di" bpmnElement="dataObjectReference_27" isHorizontal="false">
+ <dc:Bounds x="224" y="441" width="145" height="71"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="230" y="452" width="125" height="51"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="dataObjectReference_29_di" bpmnElement="dataObjectReference_29" isHorizontal="false">
+ <dc:Bounds x="419" y="425" width="166" height="103"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="425" y="436" width="146" height="83"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="dataObjectReference_31_di" bpmnElement="dataObjectReference_31" isHorizontal="false">
+ <dc:Bounds x="751" y="441" width="150" height="71"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="757" y="452" width="130" height="51"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="dataObjectReference_33_di" bpmnElement="dataObjectReference_33" isHorizontal="false">
+ <dc:Bounds x="232" y="938" width="125" height="71"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="238" y="949" width="105" height="51"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="dataObjectReference_35_di" bpmnElement="dataObjectReference_35" isHorizontal="false">
+ <dc:Bounds x="407" y="922" width="144" height="103"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="413" y="933" width="124" height="83"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNShape id="dataObjectReference_37_di" bpmnElement="dataObjectReference_37" isHorizontal="false">
+ <dc:Bounds x="746" y="938" width="146" height="71"/>
+ <bpmndi:BPMNLabel>
+ <dc:Bounds x="752" y="949" width="126" height="51"/>
+</bpmndi:BPMNLabel>
+
+</bpmndi:BPMNShape>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_38_di" bpmnElement="sequenceFlow_38">
+ <di:waypoint x="134" y="154"/>
+ <di:waypoint x="614" y="213"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_39_di" bpmnElement="sequenceFlow_39">
+ <di:waypoint x="669" y="239"/>
+ <di:waypoint x="669" y="264"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_40_di" bpmnElement="sequenceFlow_40">
+ <di:waypoint x="669" y="304"/>
+ <di:waypoint x="669" y="329"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_41_di" bpmnElement="sequenceFlow_41">
+ <di:waypoint x="728" y="389"/>
+ <di:waypoint x="936" y="476"/>
+ <di:waypoint x="666" y="561"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_42_di" bpmnElement="sequenceFlow_42">
+ <di:waypoint x="629" y="592"/>
+ <di:waypoint x="629" y="617"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_43_di" bpmnElement="sequenceFlow_43">
+ <di:waypoint x="629" y="672"/>
+ <di:waypoint x="629" y="697"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_44_di" bpmnElement="sequenceFlow_44">
+ <di:waypoint x="629" y="737"/>
+ <di:waypoint x="629" y="762"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_45_di" bpmnElement="sequenceFlow_45">
+ <di:waypoint x="629" y="801"/>
+ <di:waypoint x="629" y="826"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_46_di" bpmnElement="sequenceFlow_46">
+ <di:waypoint x="706" y="890"/>
+ <di:waypoint x="926" y="974"/>
+ <di:waypoint x="755" y="1050"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_47_di" bpmnElement="sequenceFlow_47">
+ <di:waypoint x="676" y="1121"/>
+ <di:waypoint x="676" y="1146"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_48_di" bpmnElement="sequenceFlow_48">
+ <di:waypoint x="676" y="1202"/>
+ <di:waypoint x="676" y="1227"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="sequenceFlow_49_di" bpmnElement="sequenceFlow_49">
+ <di:waypoint x="676" y="1266"/>
+ <di:waypoint x="676" y="1291"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataInputAssociation_50_di" bpmnElement="dataInputAssociation_50">
+ <di:waypoint x="369" y="497"/>
+ <di:waypoint x="592" y="562"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataOutputAssociation_51_di" bpmnElement="dataOutputAssociation_51">
+ <di:waypoint x="611" y="382"/>
+ <di:waypoint x="369" y="455"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataInputAssociation_52_di" bpmnElement="dataInputAssociation_52">
+ <di:waypoint x="570" y="528"/>
+ <di:waypoint x="603" y="553"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataOutputAssociation_53_di" bpmnElement="dataOutputAssociation_53">
+ <di:waypoint x="616" y="400"/>
+ <di:waypoint x="579" y="425"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataInputAssociation_54_di" bpmnElement="dataInputAssociation_54">
+ <di:waypoint x="753" y="512"/>
+ <di:waypoint x="666" y="554"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataOutputAssociation_55_di" bpmnElement="dataOutputAssociation_55">
+ <di:waypoint x="719" y="400"/>
+ <di:waypoint x="776" y="441"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataInputAssociation_56_di" bpmnElement="dataInputAssociation_56">
+ <di:waypoint x="357" y="992"/>
+ <di:waypoint x="597" y="1063"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataOutputAssociation_57_di" bpmnElement="dataOutputAssociation_57">
+ <di:waypoint x="552" y="887"/>
+ <di:waypoint x="357" y="953"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataInputAssociation_58_di" bpmnElement="dataInputAssociation_58">
+ <di:waypoint x="551" y="1015"/>
+ <di:waypoint x="614" y="1050"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataOutputAssociation_59_di" bpmnElement="dataOutputAssociation_59">
+ <di:waypoint x="581" y="897"/>
+ <di:waypoint x="548" y="922"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataInputAssociation_60_di" bpmnElement="dataInputAssociation_60">
+ <di:waypoint x="773" y="1009"/>
+ <di:waypoint x="721" y="1050"/>
+</bpmndi:BPMNEdge>
+
+ <bpmndi:BPMNEdge id="dataOutputAssociation_61_di" bpmnElement="dataOutputAssociation_61">
+ <di:waypoint x="689" y="897"/>
+ <di:waypoint x="758" y="938"/>
+</bpmndi:BPMNEdge>
+
+</bpmndi:BPMNPlane>
+
+</bpmndi:BPMNDiagram>
+
+</bpmn:definitions>
+<!--
+Exported by BPMN Sketch Miner 1.17.6.3337
+
+Pool: Sistema de Biblioteca
+  Lane: Bibliotecário
+    Inicio
+    -> Verificar se usuário está cadastrado
+    -> [Decisão] Usuário cadastrado?
+    -> [Sim] -> Empréstimo ou reserva
+    -> [Não] -> Cadastrar novo usuário
+  Lane: Usuário
+    -> Solicitar empréstimo de livro
+    -> Devolver livro
+  Lane: Sistema
+    -> Verificar disponibilidade do livro
+    -> [Decisão] Livro disponível?
+    -> [Sim] -> Registrar empréstimo
+    -> [Não] -> Registrar reserva
+    -> Notificar usuário (quando reserva disponível)
+    -> Calcular multas (após devolução)
+    Fim
+
+
+-->
