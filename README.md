@@ -31,7 +31,7 @@
      - **Member**: Usuários comuns, que podem realizar reservas e empréstimos.
 
 ### Modelagem do Sistema (Diagrama UML):
-![](bookflow\bookflow.client\src\assets\images\diagrama_UML.png)
+![](diagrama_UML.png)
 - O sistema foi modelado com um diagrama UML, representando as principais entidades:
   - **Book (Livro)**: Representa o livro em si, incluindo informações como título, autor e ISBN.
   - **Copy (Exemplar)**: Uma cópia física do livro, com condições (novo, usado, danificado, perdido).
