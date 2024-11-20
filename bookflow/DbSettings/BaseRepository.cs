@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoRepository;
 using System.Reflection;
+using bookflow.Models;
 
 namespace bookflow.DbSettings
 {
