@@ -126,14 +126,14 @@ namespace bookflow.DbSettings
                 foreach (var property in properties)
                 {
                     var value = property.GetValue(data);
-                    if (value != null && property.Name != nameof(BaseModel.id))
+                    if (value != null && property.Name != nameof(BaseModel.Id))
                     {
                         var fieldName = property.Name;
                         var update = Builders<T>.Update.Set(fieldName, value);
                         updateDefinitions.Add(update);
                     }
                 }
-                await collection.UpdateOneAsync(Builders<T>.Filter.Eq("_id", new ObjectId(data.id)), Builders<T>.Update.Combine(updateDefinitions));
+                await collection.UpdateOneAsync(Builders<T>.Filter.Eq("_id", new ObjectId(data.Id)), Builders<T>.Update.Combine(updateDefinitions));
                 return true;
             }
             catch

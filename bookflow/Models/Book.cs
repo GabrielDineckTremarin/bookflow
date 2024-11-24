@@ -9,6 +9,8 @@ namespace bookflow.Models
         public string Author { get; set; }
         public DateTime PublicationDate { get; set; }
         public string ISBN { get; set; }
+
+        List<string> Images { get; set; }
     }
 
 }
