@@ -1,8 +1,12 @@
+using bookflow.Controllers;
+using bookflow.DbSettings;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<BookController, BookController>();
+builder.Services.AddSingleton<DbAccess>();
 
 //builder.Services.AddEndpointsApiExplorer(); // Required for minimal APIs and Swagger integration
 //builder.Services.AddSwaggerGen();
