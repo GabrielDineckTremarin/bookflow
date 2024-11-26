@@ -12,26 +12,64 @@ namespace bookflow.Controllers
         {
             _blBook = new BlBook(dbAccess);
         }
-        public IActionResult GetBook()
-        {
-            _blBook.teste();
-            return Ok(new { Success = true, Message = "deu certo"});
-        }
 
-        [HttpPost]
-        public async Task<ApiResponse> BorrowCopy([FromQuery]string id, [FromQuery] DateTime returnDate)
+        [HttpGet]
+        public  ApiResponse GetBooks([FromQuery]string value)
         {
-            
             try
             {
-                return new ApiResponse(await _blBook.BorrowCopy(id, returnDate));
+                return new ApiResponse(_blBook.GetBooks(value));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+
                 return new ApiResponse(ex);
             }
         }
+
+        [HttpDelete]
+        public async Task<ApiResponse> DeleteBook([FromQuery] string id)
+        {
+            try
+            {
+                return new ApiResponse(await _blBook.DeleteBook(id));
+            }
+            catch (Exception ex)
+            {
+
+                return new ApiResponse(ex);
+            }
+        }
+
+        [HttpPut]
+        public async Task<ApiResponse> UpdateBook([FromBody] Book book)
+        {
+            try
+            {
+                return new ApiResponse(await _blBook.UpdateBook(book));
+            }
+            catch (Exception ex)
+            {
+
+                return new ApiResponse(ex);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ApiResponse> CreateBook([FromBody] Book book)
+        {
+            try
+            {
+                return new ApiResponse(await _blBook.CreateBook(book));
+            }
+            catch (Exception ex)
+            {
+
+                return new ApiResponse(ex);
+            }
+        }
+
+ 
 
         [HttpPost]
         public async Task<ApiResponse> MakeReservation([FromQuery] string id)
@@ -47,19 +85,7 @@ namespace bookflow.Controllers
             }
         }
 
-        [HttpPut]
-        public async Task<ApiResponse> ReturnCopy([FromQuery] string id)
-        {
 
-            try
-            {
-                return new ApiResponse(await _blBook.ReturnCopy(id));
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse(ex);
-            }
-        }
 
 
 

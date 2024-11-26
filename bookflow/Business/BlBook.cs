@@ -13,55 +13,61 @@ namespace bookflow.Business
             _dbAccess = dbAccess;
         }
 
-        public void teste()
+        public List<Book> GetBooks(string value)
         {
-            _dbAccess._reservationRepository.InsertOne(
-                new Models.Reservation
-                {
-                    Date = DateTime.Now,
-                    BookId = "123",
-                    Status = Models.ReservationStatus.Active,
-                    UserId = "123",
-                }
-                );
-        }
-
-        public async Task<Loan> BorrowCopy(string id, DateTime returnDate)
-        {
-            if (DateTime.Now > returnDate) throw new ValidationException("Data de devolução inválida!");
-            if ((returnDate - DateTime.Now).Days > 10) throw new ValidationException("Você pode alugar livro por no máximo 10 dias!");
-
-            var book = _dbAccess._bookRepository.GetById(id);
-
-            if (book == null) throw new ValidationException("Livro não encontrado");
-            var queries = new List<FilterDefinition<Copy>> {
-                Builders<Copy>.Filter.Eq("BookId", id),
-                Builders<Copy>.Filter.Eq("Available",true),
-                Builders<Copy>.Filter.Ne("Condition",CopyCondition.Lost),
-                Builders<Copy>.Filter.Ne("Condition",CopyCondition.Damaged)
-            };
-            var availableCopies = await _dbAccess._copyRepository.GetFiltered(Builders<Copy>.Filter.And(queries), new string[] {"_id"});
-            var copyId = availableCopies.FirstOrDefault()?.Id;
-            if (string.IsNullOrEmpty(copyId)) throw new ValidationException("Não há um exemplar desse livro disponível no momento!");
+            if (string.IsNullOrEmpty(value)) throw new ValidationException("Insira um valor de entrada");
 
 
-            await _dbAccess._copyRepository.Update(
-                Builders<Copy>.Filter.Eq("_id", new ObjectId(copyId)),
-                Builders<Copy>.Update.Set(x => x.Available, false)
-                );
-
-            var loan = new Loan()
+            if (ObjectId.TryParse(value, out var id))
             {
-                CopyId = availableCopies.First().Id,
-                Status = LoanStatus.Active,
-                Date = DateTime.Now,
-                ReturnDate = DateTime.Now,
+                var book = _dbAccess._bookRepository.GetById(value) ;
+                return book == null ? new List<Book> { } : new List<Book> { book };
+            }
+
+
+            var cleanedValue = $"^{string.Join(@"\s*", value.Replace(" ", "").ToCharArray())}$";
+            var queries = new List<FilterDefinition<Book>> {
+                Builders<Book>.Filter.Regex("Author", new BsonRegularExpression(cleanedValue, "i")),
+                Builders<Book>.Filter.Regex("Title", new BsonRegularExpression(cleanedValue, "i")),
+                Builders<Book>.Filter.Regex("ISBN", new BsonRegularExpression(cleanedValue, "i"))
             };
 
-            await _dbAccess._loanRepository.InsertOne(loan);
-
-            return loan;
+            return _dbAccess._bookRepository.GetFiltered(Builders<Book>.Filter.Or(queries)).GetAwaiter().GetResult();                              
         }
+
+        public async Task<bool> DeleteBook(string id)
+        {
+            var copies = await _dbAccess._copyRepository.GetFiltered(Builders<Copy>.Filter.Eq("BookId", id), new string[]{ "_id"});
+            var book = _dbAccess._bookRepository.GetById(id, new string[] { "_id"});
+            if (book == null) throw new ValidationException("Livro não encontrado!");
+
+            if (copies?.Any() == true) throw new ValidationException("Não é possível excluir esse livro, porque há muitos exemplares vinculados a ele.");
+
+            return await _dbAccess._bookRepository.DeleteOne(id);
+        }
+
+        public async Task<Book> CreateBook(Book book)
+        {
+            this.ValidateBook(book);
+            await _dbAccess._bookRepository.InsertOne(book);
+            return _dbAccess._bookRepository.GetById(book.Id);
+        }
+
+        public async Task<bool> UpdateBook(Book book)
+        {
+            this.ValidateBook(book);
+            return await _dbAccess._bookRepository.Update(book);
+        }
+        private void ValidateBook(Book book)
+        {
+            if (book == null) throw new ValidationException("Verifique se os dados foram passados corretamente.");
+            if (string.IsNullOrEmpty(book.ISBN)) throw new ValidationException("O campo ISBN é obrigatório.");
+            if (string.IsNullOrEmpty(book.Author)) throw new ValidationException("O nome do autor é obrigatório.");
+            if (string.IsNullOrEmpty(book.Title)) throw new ValidationException("O campo Título é obrigatório.");
+            if (string.IsNullOrEmpty(book.Id) && this.GetBooks(book.ISBN)?.Any() == true) throw new ValidationException("Já existe um livro cadastrado com esse ISBN.");
+        }
+
+
 
         public async Task<Reservation> MakeReservation(string id)
         {
@@ -76,26 +82,6 @@ namespace bookflow.Business
             return newReservation;
         }
 
-        public async Task<string> ReturnCopy(string id)
-        {
-
-            var filter = Builders<Loan>.Filter.Eq("_id", new ObjectId(id));
-
-            var loan = await _dbAccess._loanRepository.GetFiltered(filter, new string[] { "CopyId", "UserId" });
-
-            if (loan.FirstOrDefault() == null) throw new ValidationException("Nenhum empréstimo foi encontrado");
-
-            await _dbAccess._copyRepository.Update(
-                Builders<Copy>.Filter.Eq("_id", new ObjectId(loan.FirstOrDefault()?.CopyId)),
-                Builders<Copy>.Update.Set(x => x.Available, true)
-            );
-
-            await _dbAccess._loanRepository.Update(
-                filter,
-                Builders<Loan>.Update.Set(x => x.Status, LoanStatus.Returned)
-                );
-
-            return "";
-        }
+ 
     }
 }
