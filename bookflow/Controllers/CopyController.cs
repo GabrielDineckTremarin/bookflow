@@ -41,5 +41,61 @@ namespace bookflow.Controllers
                 return new ApiResponse(ex);
             }
         }
+
+        [HttpPut]
+        public async Task<ApiResponse> DeleteCopy([FromQuery] string id)
+        {
+
+            try
+            {
+                return new ApiResponse(await _blCopy.DeleteCopy(id));
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse(ex);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ApiResponse> CreateCopy([FromBody] Copy copy)
+        {
+
+            try
+            {
+                return new ApiResponse(await _blCopy.InsertCopy(copy));
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse(ex);
+            }
+        }
+
+        [HttpPut]
+        public async Task<ApiResponse> UpdateCopy([FromBody] Copy copy)
+        {
+
+            try
+            {
+                return new ApiResponse(await _blCopy.UpdateCopy(copy));
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse(ex);
+            }
+        }
+
+        [HttpGet]
+        public async Task<ApiResponse> GetCopies([FromQuery] string? id, [FromQuery] bool? available)
+        {
+
+            try
+            {
+                return new ApiResponse(_blCopy.GetCopies(id, available));
+            }
+            catch (Exception ex)
+            {
+                return new ApiResponse(ex);
+            }
+        }
     }
 }

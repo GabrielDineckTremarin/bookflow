@@ -54,7 +54,6 @@ namespace bookflow.Business
         {
 
             var filter = Builders<Loan>.Filter.Eq("_id", new ObjectId(id));
-
             var loan = await _dbAccess._loanRepository.GetFiltered(filter, new string[] { "CopyId", "UserId" });
 
             if (loan.FirstOrDefault() == null) throw new ValidationException("Nenhum empréstimo foi encontrado");
@@ -70,6 +69,74 @@ namespace bookflow.Business
                 );
 
             return "";
+        }
+
+        public async Task<Copy> InsertCopy(Copy newCopy)
+        {
+            try
+            {
+                ValidateCopy(newCopy);
+                await _dbAccess._copyRepository.InsertOne(newCopy);
+                return newCopy;
+            }
+            catch (ValidationException ex)
+            {
+                throw new ValidationException(ex.Message);
+            }
+        }
+        public async Task<Copy> UpdateCopy(Copy copy)
+        {
+            try
+            {
+                ValidateCopy(copy);
+                await _dbAccess._copyRepository.Update(copy);
+                return copy;
+            }
+            catch (ValidationException ex)
+            {
+                throw new ValidationException(ex.Message);
+            }
+        }
+        public async Task<bool> DeleteCopy(string id)
+        {
+            try
+            {               
+                return await _dbAccess._copyRepository.DeleteOne(id);
+            }
+            catch (ValidationException ex)
+            {
+                throw new ValidationException(ex.Message);
+            }
+        }
+
+        public List<Copy> GetCopies(string? copyId, bool? available)
+        {
+            if (string.IsNullOrEmpty(copyId) && available == null) throw new ValidationException("Insira valores de entrada");
+
+            var queries = new List<FilterDefinition<Copy>> { };
+
+            if (available != null)
+                queries.Add(Builders<Copy>.Filter.Eq("Available", available.Value));
+
+            if (ObjectId.TryParse(copyId, out var id))
+            {
+                queries.Add(Builders<Copy>.Filter.Or(new List<FilterDefinition<Copy>>
+                {
+                    Builders<Copy>.Filter.Eq("_id", id),
+                    Builders<Copy>.Filter.Eq("BookId", id)
+                }));
+            }
+
+            return _dbAccess._copyRepository.GetFiltered(Builders<Copy>.Filter.And(queries)).GetAwaiter().GetResult();
+        }
+
+        private void ValidateCopy(Copy copy)
+        {
+            if (copy == null) throw new ValidationException("Algo deu errado, insira os dados novamente.");
+            if (copy.Condition == null) throw new ValidationException("Insira o estado atual da cópia.");
+            if (string.IsNullOrEmpty(copy.BookId)) throw new ValidationException("Selecione um livro.");
+
+            if (_dbAccess._bookRepository.GetById(copy.BookId, new string[] { "_id" }) == null) throw new ValidationException("Não foi encontrado o livro referente a essa cópia");
         }
 
     }
